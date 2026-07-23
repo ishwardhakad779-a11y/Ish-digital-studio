@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, Send, Loader2, CheckCircle2, AlertCircle } from 'lucide-react'
 import { FaGithub, FaWhatsapp } from 'react-icons/fa'
 import SectionHeading from '../ui/SectionHeading'
-import { contactInfo } from '../../data/siteData'
+import { contactInfo, teamContacts } from '../../data/siteData'
 import { submitContactForm } from '../../utils/api'
 
 const initialForm = { name: '', email: '', phone: '', message: '' }
@@ -61,13 +61,22 @@ export default function Contact() {
                 <a href={`mailto:${contactInfo.email}`} className="text-sm hover:text-[#00E5FF]">{contactInfo.email}</a>
               </div>
             </div>
+
             <div className="glass-card p-6 flex items-start gap-4">
               <Phone className="text-[#00E5FF] mt-0.5" size={20} />
-              <div>
+              <div className="space-y-1.5">
                 <p className="text-white/40 text-xs uppercase tracking-wider mb-1">Phone / WhatsApp</p>
-                <a href={`tel:${contactInfo.phone}`} className="text-sm hover:text-[#00E5FF]">{contactInfo.phone}</a>
+                {teamContacts.map((person) => (
+                  <div key={person.phone} className="flex items-center gap-2 text-sm">
+                    <a href={`tel:${person.phone}`} className="hover:text-[#00E5FF]">
+                      {person.phone}
+                    </a>
+                    <span className="text-white/40">— {person.name}</span>
+                  </div>
+                ))}
               </div>
             </div>
+
             <div className="glass-card p-6 flex items-start gap-4">
               <MapPin className="text-[#00E5FF] mt-0.5" size={20} />
               <div>
@@ -75,6 +84,7 @@ export default function Contact() {
                 <p className="text-sm">{contactInfo.location}</p>
               </div>
             </div>
+
             <div className="flex gap-3 pt-2">
               <a href={contactInfo.github} target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-full glass-card flex items-center justify-center hover:text-[#00E5FF]">
                 <FaGithub size={18} />

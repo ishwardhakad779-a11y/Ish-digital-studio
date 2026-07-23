@@ -119,3 +119,8 @@ export const contactInfo = {
   github: 'https://github.com/ishwardhakad779-a11y',
   location: 'Indore, Madhya Pradesh',
 }
+
+export const teamContacts = [
+  { name: 'Ishwar Dhakad', phone: '+91 8085781850' },
+  { name: 'Naman Dhakad', phone: '+91 9406601697' },
+]

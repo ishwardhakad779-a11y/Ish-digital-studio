@@ -32,7 +32,9 @@ class Settings(BaseSettings):
     SMTP_PASSWORD: str = ""
     SMTP_FROM_EMAIL: str = "no-reply@ishdigitalstudio.com"
     ADMIN_NOTIFICATION_EMAIL: str = "ishwardhakad779@gmail.com"
-    RESEND_API_KEY: str="re_Ra9wnFRV_2b7bziVG685oGXoUvBGNMUeh"
+    RESEND_API_KEY: str="re_UE6thQfC_7UZfLevfHj8rBAARvzVmrMCM"
+    RAZORPAY_KEY_ID:str="rzp_test_TH5IVeFdOAAvFG"
+    RAZORPAY_KEY_SECRET:str="XhI12FzWC9LYms2WykCF96Ju"
 
     class Config:
         env_file = ".env"

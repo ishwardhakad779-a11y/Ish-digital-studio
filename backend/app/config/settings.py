@@ -1,10 +1,8 @@
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic_settings import BaseSettings
 from functools import lru_cache
 
 
 class Settings(BaseSettings):
-    model_config = SettingsConfigDict(env_file=".env", case_sensitive=True, extra="ignore")
-
     # App
     APP_NAME: str = "ISH Digital Studio API"
     ENVIRONMENT: str = "development"
@@ -12,27 +10,33 @@ class Settings(BaseSettings):
     API_PREFIX: str = "/api"
 
     # Database (Supabase Postgres connection string)
+    # Format: postgresql://postgres:[PASSWORD]@[HOST]:5432/postgres
     DATABASE_URL: str = "postgresql://postgres:postgres@localhost:5432/ish_digital_studio"
 
     # JWT Auth
     JWT_SECRET_KEY: str = "change-this-secret-in-production"
     JWT_ALGORITHM: str = "HS256"
-    ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24  # 24 hours
 
     # CORS
     ALLOWED_ORIGINS: str = "http://localhost:5173,https://ishdigitalstudio.com"
 
-    # Admin bootstrap
+    # Admin bootstrap (used once by seed script to create first admin)
     ADMIN_EMAIL: str = "ishwardhakad779@gmail.com"
     ADMIN_INITIAL_PASSWORD: str = "change-this-password"
 
-    # Email (SMTP)
+    # Email (SMTP) - for contact/consultation notifications
     SMTP_HOST: str = ""
     SMTP_PORT: int = 587
     SMTP_USER: str = ""
     SMTP_PASSWORD: str = ""
     SMTP_FROM_EMAIL: str = "no-reply@ishdigitalstudio.com"
     ADMIN_NOTIFICATION_EMAIL: str = "ishwardhakad779@gmail.com"
+    RESEND_API_KEY: str="re_Ra9wnFRV_2b7bziVG685oGXoUvBGNMUeh"
+
+    class Config:
+        env_file = ".env"
+        case_sensitive = True
 
     @property
     def cors_origins(self) -> list[str]:
@@ -45,11 +49,3 @@ def get_settings() -> Settings:
 
 
 settings = get_settings()
-
-if "localhost:5432/ish_digital_studio" in settings.DATABASE_URL:
-    print(
-        "\n⚠️  WARNING: DATABASE_URL is still the default placeholder.\n"
-        "   Your .env file was not found or not loaded.\n"
-        "   Make sure a '.env' file exists in the 'backend' folder "
-        "(same folder as this command is run from) and contains DATABASE_URL=...\n"
-    )

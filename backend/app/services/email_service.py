@@ -1,37 +1,33 @@
 """
 Email notification service.
 
-This uses Python's built-in smtplib against SMTP_HOST/PORT/USER/PASSWORD from settings.
-Works with any SMTP provider (Gmail App Password, SendGrid, Resend SMTP, Zoho, etc).
-If SMTP_HOST is not configured, emails are skipped (logged only) so the API keeps working
-in development without crashing.
+Uses Resend's HTTPS API instead of raw SMTP, since Render's free tier blocks
+outbound SMTP ports (25/587/465). Resend works over HTTPS (443), which is not blocked.
+If RESEND_API_KEY is not configured, emails are skipped (logged only) so the API keeps
+working in development without crashing.
 """
 import logging
-import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
+import resend
 
 from app.config.settings import settings
 
 logger = logging.getLogger("ish_digital_studio.email")
 
+resend.api_key = settings.RESEND_API_KEY
+
 
 def _send_email(to_email: str, subject: str, html_body: str) -> bool:
-    if not settings.SMTP_HOST or not settings.SMTP_USER:
-        logger.info(f"[EMAIL SKIPPED - no SMTP configured] To: {to_email} | Subject: {subject}")
+    if not settings.RESEND_API_KEY:
+        logger.info(f"[EMAIL SKIPPED - no RESEND_API_KEY configured] To: {to_email} | Subject: {subject}")
         return False
 
-    msg = MIMEMultipart("alternative")
-    msg["Subject"] = subject
-    msg["From"] = settings.SMTP_FROM_EMAIL
-    msg["To"] = to_email
-    msg.attach(MIMEText(html_body, "html"))
-
     try:
-        with smtplib.SMTP(settings.SMTP_HOST, settings.SMTP_PORT) as server:
-            server.starttls()
-            server.login(settings.SMTP_USER, settings.SMTP_PASSWORD)
-            server.sendmail(settings.SMTP_FROM_EMAIL, [to_email], msg.as_string())
+        resend.Emails.send({
+            "from": settings.SMTP_FROM_EMAIL,
+            "to": [to_email],
+            "subject": subject,
+            "html": html_body,
+        })
         return True
     except Exception as exc:
         logger.error(f"Failed to send email to {to_email}: {exc}")

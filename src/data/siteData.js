@@ -23,7 +23,7 @@ export const portfolio = [
     desc: 'A trust-first clinic website with doctor profiles, appointment booking and patient-friendly design.',
     image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1200&auto=format&fit=crop',
     stack: ['React', 'Tailwind CSS', 'FastAPI', 'Framer Motion'],
-    live: '#',
+    live: 'https://premium-medical-clinic-seven.vercel.app',
     github: 'https://github.com/ishwardhakad779-a11y',
   },
   {
@@ -31,7 +31,7 @@ export const portfolio = [
     desc: 'High-energy fitness brand site with class scheduling, trainer profiles and membership plans.',
     image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1200&auto=format&fit=crop',
     stack: ['React', 'Vite', 'Tailwind CSS'],
-    live: '#',
+    live: 'https://luxury-gym-website-eta.vercel.app',
     github: 'https://github.com/ishwardhakad779-a11y',
   },
   {

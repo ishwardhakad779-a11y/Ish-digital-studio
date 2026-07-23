@@ -50,6 +50,14 @@ export const portfolio = [
     live: '#',
     github: 'https://github.com/ishwardhakad779-a11y',
   },
+  {
+    title: 'Luxe & Vine — Premium Cafe',
+    desc: 'An artisanal cafe and restaurant website with a gold-and-ivory brand identity, table reservations and a story-driven menu experience.',
+    image: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1200&auto=format&fit=crop',
+    stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
+    live: 'https://premium-cofe-website.vercel.app/',
+    github: 'https://github.com/ishwardhakad779-a11y',
+  },
 ]
 
 export const stats = [

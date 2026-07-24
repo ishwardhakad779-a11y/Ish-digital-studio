@@ -35,6 +35,7 @@ class Settings(BaseSettings):
     RESEND_API_KEY: str="re_UE6thQfC_7UZfLevfHj8rBAARvzVmrMCM"
     RAZORPAY_KEY_ID:str="rzp_test_TH5IVeFdOAAvFG"
     RAZORPAY_KEY_SECRET:str="XhI12FzWC9LYms2WykCF96Ju"
+    GROQ_API_KEY:str="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"
 
     class Config:
         env_file = ".env"

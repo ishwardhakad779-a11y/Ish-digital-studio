@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Phone } from 'lucide-react'
+import { Menu, X, Phone, Share2 } from 'lucide-react'
 import { contactInfo } from '../../data/siteData'
 
 const links = [
@@ -22,6 +22,24 @@ export default function Navbar() {
     window.addEventListener('scroll', onScroll)
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  const handleShare = async () => {
+    const shareData = {
+      title: 'ISH Digital Studio',
+      text: 'Check out ISH Digital Studio — premium websites, AI solutions and business automation.',
+      url: window.location.href,
+    }
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData)
+      } catch (err) {
+        // user cancelled, do nothing
+      }
+    } else {
+      navigator.clipboard.writeText(window.location.href)
+      alert('Link copied to clipboard!')
+    }
+  }
 
   return (
     <header
@@ -53,6 +71,14 @@ export default function Navbar() {
         </div>
 
         <div className="hidden lg:flex items-center gap-3">
+          <button
+            onClick={handleShare}
+            data-cursor-hover
+            aria-label="Share"
+            className="w-9 h-9 rounded-full glass-card flex items-center justify-center hover:text-[#00E5FF] transition-colors"
+          >
+            <Share2 size={16} />
+          </button>
           <a
             href={`tel:${contactInfo.phone}`}
             data-cursor-hover
@@ -99,6 +125,12 @@ export default function Navbar() {
               >
                 Book Consultation
               </a>
+              <button
+                onClick={handleShare}
+                className="flex items-center justify-center gap-2 text-white/70 text-sm"
+              >
+                <Share2 size={16} /> Share this site
+              </button>
             </div>
           </motion.div>
         )}

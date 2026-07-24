@@ -131,4 +131,17 @@ export const contactInfo = {
 export const teamContacts = [
   { name: 'Ishwar Dhakad', phone: '+91 8085781850' },
   { name: 'Naman Dhakad', phone: '+91 9406601697' },
+
+
+]
+
+export const calculatorFeatures = [
+  { id: 'website', name: 'Base Website (5 pages)', price: 3999, base: true },
+  { id: 'extraPage', name: 'Extra Page', price: 300 },
+  { id: 'chatbot', name: 'AI Chatbot Integration', price: 1500 },
+  { id: 'booking', name: 'Booking/Appointment System', price: 1200 },
+  { id: 'dashboard', name: 'Admin Dashboard', price: 1200 },
+  { id: 'seo', name: 'Advanced SEO', price: 800 },
+  { id: 'voice', name: 'AI Voice Assistant', price: 2500 },
+  { id: 'automation', name: 'Business Automation', price: 2000 },
 ]

@@ -22,6 +22,7 @@ import About from './components/sections/About'
 import WhyChooseUs from './components/sections/WhyChooseUs'
 import Process from './components/sections/Process'
 import Pricing from './components/sections/Pricing'
+import PricingCalculator from './components/sections/PricingCalculator'
 import Testimonials from './components/sections/Testimonials'
 import FAQ from './components/sections/FAQ'
 import Contact from './components/sections/Contact'
@@ -54,6 +55,7 @@ function MainSite() {
           <WhyChooseUs />
           <Process />
           <Pricing />
+          <PricingCalculator />
           <Testimonials />
           <FAQ />
           <Contact />

@@ -12,6 +12,7 @@ import Footer from './components/layout/Footer'
 import WhatsAppButton from './components/ui/WhatsAppButton'
 import CallButton from './components/ui/CallButton'
 import BackToTop from './components/ui/BackToTop'
+import ChatWidget from './components/ui/ChatWidget'
 
 import Hero from './components/sections/Hero'
 import Stats from './components/sections/Stats'
@@ -63,6 +64,7 @@ function MainSite() {
       <WhatsAppButton />
       <CallButton />
       <BackToTop />
+      <ChatWidget />
     </div>
   )
 }
